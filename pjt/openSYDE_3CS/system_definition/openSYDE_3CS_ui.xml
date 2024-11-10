@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-system-ui-definition>
+    <file-version>1</file-version>
+    <nodes length="5">
+        <node>node_esx_3cs/node_ui.xml</node>
+        <node>node_engine/node_ui.xml</node>
+        <node>node_rh_joystick/node_ui.xml</node>
+        <node>node_lh_joystick/node_ui.xml</node>
+        <node>node_ui_con/node_ui.xml</node>
+    </nodes>
+    <buses length="2">
+        <bus>
+            <line>
+                <color r="206" g="206" b="217" a="255"/>
+                <width pixels="6"/>
+                <zorder value="3"/>
+                <interaction-points>
+                    <interaction-point x="167" y="464"/>
+                    <interaction-point x="618" y="464"/>
+                </interaction-points>
+            </line>
+            <color-middle-line r="255" g="255" b="255" a="255"/>
+        </bus>
+        <bus>
+            <line>
+                <color r="206" g="206" b="217" a="255"/>
+                <width pixels="6"/>
+                <zorder value="8"/>
+                <interaction-points>
+                    <interaction-point x="367" y="161"/>
+                    <interaction-point x="667" y="161"/>
+                </interaction-points>
+            </line>
+            <color-middle-line r="255" g="255" b="255" a="255"/>
+        </bus>
+    </buses>
+    <bus-text-elements length="2">
+        <bus-text-element bus-index="0">
+            <box>
+                <position x="180" y="414"/>
+                <size width="48.8125" height="30"/>
+                <zorder value="2"/>
+            </box>
+            <font-style>Segoe UI,-1,16,5,50,0,0,0,0,0</font-style>
+            <font-color>
+                <bright r="57" g="57" b="109" a="255"/>
+                <dark r="255" g="255" b="255" a="255"/>
+            </font-color>
+            <text-content>CAN1</text-content>
+        </bus-text-element>
+        <bus-text-element bus-index="1">
+            <box>
+                <position x="367" y="112"/>
+                <size width="48.8125" height="30"/>
+                <zorder value="7"/>
+            </box>
+            <font-style>Segoe UI,-1,16,5,50,0,0,0,0,0</font-style>
+            <font-color>
+                <bright r="57" g="57" b="109" a="255"/>
+                <dark r="255" g="255" b="255" a="255"/>
+            </font-color>
+            <text-content>CAN2</text-content>
+        </bus-text-element>
+    </bus-text-elements>
+    <text-elements/>
+    <boundaries/>
+    <images/>
+    <line-arrows/>
+</opensyde-system-ui-definition>
