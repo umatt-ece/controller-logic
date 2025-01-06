@@ -20,6 +20,10 @@
 #include <assert.h>
 #include <math.h>
 
+// https://stackoverflow.com/questions/3437404/min-and-max-in-c
+#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+#define MAX(a, b) (((a) > (b)) ? (a) : (b))
+
 /*******************************************************************************/
 /*!
     \brief Normalize the time value to be within the range [0, 1]
@@ -39,5 +43,5 @@ double normalize_time(int time, int duration) {
   }
 
   // Ensure that we fit within the range [0, 1]
-  return max(0, min(1, (double)time / duration));
+  return MAX(0, MIN(1, (double)time / duration));
 }
