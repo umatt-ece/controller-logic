@@ -41,7 +41,7 @@ void initialize_timer(Timer *timer, int duration) {
     \return True if the timer is done, false otherwise
   */
 /*******************************************************************************/
-bool has_elapsed(Timer *timer) {
+bool has_elapsed(const Timer *timer) {
   if (timer == NULL) {
     return false;
   }
