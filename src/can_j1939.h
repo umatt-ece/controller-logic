@@ -8,16 +8,14 @@
         CAN modules including CAN in and out functions, and message layouts.
 
     \copyright
-        Copyright (C) 2023  MacDon Inustries Ltd.  All Rights Reserved.
+        Copyright (C) 2025  University of Manitoba Association of Tiny Tractors.  All Rights Reserved.
         License     use only under terms of contract / confidential\n
-
-   \ingroup   can
 
     History:
 
-    Date (YYYY/MM/DD) |   Author      |   Changes
-    ------------------|---------------|----------------
-    2023/03/31        | Ivan Ciric    | File branched from project 278 (ETDK) to create ISOBUS template project.
+    Date (YYYY/MM/DD) |   Author        |   Changes
+    ------------------|-----------------|----------------
+    2025/01/29        |Zachary DeGraeve | File created
 */
 /******************************************************************************/
 
@@ -27,9 +25,8 @@
 /*******************************************************************************
   INCLUDE
 *******************************************************************************/
-// include platform configuration
-#include "platform_config.h"
-#include "can_j1939.h"
+#include <string.h>
+#include "can_j1939_user.h"
 
 /*******************************************************************************
   DEFINES
@@ -175,11 +172,11 @@ typedef enum
  */
 typedef struct
 {
-    uint32_t               PGN;
-    uint8_t                destination_address;
-    uint8_t                source_address;
-    uint8_t                priority;
-    uint8_t                data_page;
+    uint32               PGN;
+    uint8                destination_address;
+    uint8                source_address;
+    uint8               priority;
+    uint8                data_page;
 } J1939_message_id_t;
 /*! @} */
 
@@ -196,9 +193,9 @@ typedef struct
 typedef struct
 {
     J1939_message_id_t     message_id;
-    uint8_t                data_buffer[ J1939_TX_MSG_DATA_SIZE ];
-    uint8_t                length;
-    uint32_t               period;
+    usint8                data_buffer[ J1939_TX_MSG_DATA_SIZE ];
+    usint8                length;
+    uint32               period;
 } J1939_tx_message_t;
 /*! @} */
 
@@ -230,8 +227,8 @@ typedef struct
 typedef struct
 {
     J1939_message_id_t     message_id;
-    uint8_t                data_buffer[ J1939_RX_MSG_DATA_SIZE ];
-    uint8_t                length;
+    usint8                data_buffer[ J1939_RX_MSG_DATA_SIZE ];
+    usint8                length;
 } J1939_rx_message_t;
 /*! @} */
 
@@ -268,7 +265,7 @@ typedef struct
     \defgroup   initCAN CAN initialization
     @{
 */
-int16_t initialize_CAN( void );
+sint16 initialize_CAN( void );
 /*! @} */
 
 /*!
@@ -278,8 +275,8 @@ int16_t initialize_CAN( void );
     \defgroup   lockCAN CAN Lock
     @{
 */
-int16_t J1939_lock_message( J1939_stack_t j1939_stack, uint32_t PGN, uint8_t destination_address, uint8_t source_address, j1939_message_t type, boolean lock );
-int16_t J1939_lock_all_messages( J1939_stack_t j1939_stack, j1939_message_t type, boolean lock );
+sint16 J1939_lock_message( J1939_stack_t j1939_stack, uint32 PGN, usint8 destination_address, usint8 source_address, j1939_message_t type, boolean lock );
+sint16 J1939_lock_all_messages( J1939_stack_t j1939_stack, j1939_message_t type, boolean lock );
 /*! @} */
 
 /*!
@@ -291,7 +288,7 @@ int16_t J1939_lock_all_messages( J1939_stack_t j1939_stack, j1939_message_t type
 CAN_STATUS_t receive_J1939_messages( void );
 CAN_STATUS_t send_J1939_messages( void );
 CAN_STATUS_t send_j1939_message( J1939_stack_t j1939_stack, J1939_tx_message_t * message );
-CAN_STATUS_t search_and_send_j1939_message( J1939_stack_t j1939_stack, uint32_t PGN, uint8_t destination_address, uint8_t source_address );
+CAN_STATUS_t search_and_send_j1939_message( J1939_stack_t j1939_stack, uint32 PGN, usint8 destination_address, usint8 source_address );
 /*! @} */
 
 /*!
@@ -300,7 +297,7 @@ CAN_STATUS_t search_and_send_j1939_message( J1939_stack_t j1939_stack, uint32_t 
     \defgroup   CAN J1939 Messages
     @{
 */
-J1939_tx_message_t * get_j1939_tx_message( J1939_stack_t j1939_stack, uint32_t PGN, uint8_t destination_address, uint8_t source_address );
+J1939_tx_message_t * get_j1939_tx_message( J1939_stack_t j1939_stack, uint32 PGN, usint8 destination_address, usint8 source_address );
 /*! @} */
 
 /*!
@@ -309,7 +306,7 @@ J1939_tx_message_t * get_j1939_tx_message( J1939_stack_t j1939_stack, uint32_t P
     \defgroup   populate Populating CAN message
     @{
 */
-boolean populate_J1939_tx_message( J1939_tx_message_t * message, const uint8_t u8_start_bit, const uint8_t u8_bit_length, const uint64_t u64_data );
+boolean populate_J1939_tx_message( J1939_tx_message_t * message, const usint8 u8_start_bit, const usint8 u8_bit_length, const uint64_t u64_data );
 /*! @} */
 
 /*!
@@ -318,7 +315,7 @@ boolean populate_J1939_tx_message( J1939_tx_message_t * message, const uint8_t u
     \defgroup   extract Extracting CAN message
     @{
 */
-boolean extract_J1939_rx_message( const J1939_rx_message_t * message, const uint8_t u8_start_bit, const uint8_t u8_bit_length, uint64_t * u64_data );
+boolean extract_J1939_rx_message( const J1939_rx_message_t * message, const usint8 u8_start_bit, const usint8 u8_bit_length, uint64_t * u64_data );
 /*! @} */
 
 /*!
@@ -327,8 +324,8 @@ boolean extract_J1939_rx_message( const J1939_rx_message_t * message, const uint
     \defgroup   CAN J1939 Messages
     @{
 */
-boolean get_j1939_tx_request_message_state( J1939_stack_t j1939_stack, uint32_t PGN, uint8_t destination_address, uint8_t source_address );
-boolean update_j1939_tx_request_message_state( J1939_stack_t j1939_stack, uint32_t PGN, uint8_t destination_address, uint8_t source_address, boolean data_obtained );
+boolean get_j1939_tx_request_message_state( J1939_stack_t j1939_stack, uint32 PGN, usint8 destination_address, usint8 source_address );
+boolean update_j1939_tx_request_message_state( J1939_stack_t j1939_stack, uint32 PGN, usint8 destination_address, usint8 source_address, boolean data_obtained );
 /*! @} */
 
 /*!
@@ -337,7 +334,7 @@ boolean update_j1939_tx_request_message_state( J1939_stack_t j1939_stack, uint32
     \defgroup   CAN J1939 Messages
     @{
 */
-int16_t J1939_filter_message( J1939_stack_t j1939_stack, uint32_t PGN, uint8_t destination_address, uint8_t source_address, j1939_message_t type, uint32_t mask );
+sint16 J1939_filter_message( J1939_stack_t j1939_stack, uint32 PGN, usint8 destination_address, usint8 source_address, j1939_message_t type, uint32 mask );
 /*! @} */
 
 #endif  //__CAN_J1939_H__

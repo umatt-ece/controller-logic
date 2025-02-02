@@ -7,16 +7,14 @@
         Application-specific file to define each Rx and Tx CAN message.
 
     \copyright
-        Copyright (C) 2023  MacDon Inustries Ltd.  All Rights Reserved.
+        Copyright (C) 2025  University of Manitoba Association of Tiny Tractors.  All Rights Reserved.
         License     use only under terms of contract / confidential\n
-
-   \ingroup   can
 
     History:
 
-    Date (YYYY/MM/DD) |   Author      |   Changes
-    ------------------|---------------|----------------
-    2023/03/31        | Ivan Ciric    | File branched from project 278 (ETDK) to create ISOBUS template project.
+    Date (YYYY/MM/DD) |   Author        |   Changes
+    ------------------|-----------------|----------------
+    2025/01/29        |Zachary DeGraeve | File created
 */
 /******************************************************************************/
 
@@ -42,9 +40,6 @@
 
 #define NUM_J1939_STACK_1_RX_MESSAGES        ( 1 )
 #define NUM_J1939_STACK_2_RX_MESSAGES        ( 1 )
-
-
-#define STW_3CS_CAN_2_ADDRESS               ( 0x27 )
 /*! @} */
 
 /*******************************************************************************
@@ -91,7 +86,7 @@ extern J1939_rx_msg_table_t J1939_stack_2_rx_msg_table[ ];
     \defgroup   initCAN CAN initialization
     @{
 */
-int16_t initialize_CAN_user( void );
+sint16 initialize_CAN_user( void );
 /*! @} */
 
 #endif  //__CAN_J1939_USER_H__
