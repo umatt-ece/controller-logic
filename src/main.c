@@ -6,42 +6,26 @@
    \brief
         Main function to initialize application, tasks and control functions.
 
-    \ingroup
-        rtos
-
     \copyright
-        Copyright (C) 2023  MacDon Inustries Ltd.  All Rights Reserved.
+        Copyright (C) 2025  University of Manitoba Association of Tiny Tractors.  All Rights Reserved.
         License     use only under terms of contract / confidential\n
 
     History:
 
-    Date (YYYY/MM/DD) |   Author      |   Changes
-    ------------------|---------------|----------------
-    2023/03/29        | Ivan Ciric    | File branched from project 278 (ETDK) to create ISOBUS template project.
+    Date (YYYY/MM/DD) |   Author         |   Changes
+    ------------------|------------------|----------------
+    2025/01/29        | Zachary DeGraeve | File created
 */
 /******************************************************************************/
 
 /*******************************************************************************
   INCLUDE
 *******************************************************************************/
-// include STW libraries
-#include "stwtypes.h"
-#include "x_lib.h"
-#include "x_os.h"
-#include "x_ssv.h"
-
-// include project headers
-#include "can_j1939.h"
 #include "main.h"
-#include "NVStorage.h"
 
 /*******************************************************************************
   DEFINES
 *******************************************************************************/
-#define EXT_SENSOR_SUPPLY_12V   12000u  //!<External sensor power supply 12V
-#define EXT_SENSOR_SUPPLY_5V    5000u   //!<External sensor power supply  5V
-
-#define MAIN_SHUTDOWN_DELAY     20000   // in microseconds
 
 /*******************************************************************************
   MACROS
@@ -58,29 +42,6 @@
 /*******************************************************************************
   CONSTANTS
 *******************************************************************************/
-/*!
-    \brief
-    This struct with the Application information is not used within the
-    Software. It will be placed in a special memory region (defined by
-    X_MEM_APPLICATION_INFO).\n
-    The information contained in this struct can be read by STW flash tools
-    (like e.g. Winflash) to determine the type of software that has been
-    flashed to the ECU.\n
-    Note:\n
-    There can only be one application information block defined.
-*/
-const T_x_lib_info gt_AppInfo X_MEM_APPLICATION_INFO =
-{
-  X_LIB_INFO_APPL_MAGIC,        //Magic key (signaling a valid Application Info Block) (do not edit!)
-  X_LIB_INFO_STRUCT_VERSION,    //Version information of the info struct               (do not edit!)
-  X_LIB_INFO_DEVICE_ID,         //ECU device ID  ; masked by X_LIB_INFO_CONTAINS_DEVICE_ID
-  __DATE__,                     //current date   ; masked by X_LIB_INFO_CONTAINS_DATE_TIME
-  __TIME__,                     //current time   ; masked by X_LIB_INFO_CONTAINS_DATE_TIME
-  APP_SOFTWARE_NAME,            //project name   ; masked by X_LIB_INFO_CONTAINS_PROJECT_NAME
-  APP_SOFTWARE_VERSION,         //project version; masked by X_LIB_INFO_CONTAINS_PROJECT_VERSION
-  X_LIB_INFO_ADDITIONAL_MAX,    //size of additional Info (max. 0xFF); masked by X_LIB_INFO_CONTAINS_ADDITIONAL_INFO
-  "UMATT"       //Additional Info (max. 255 chars)   ; masked by X_LIB_INFO_CONTAINS_ADDITIONAL_INFO
-};
 
 /*!
     \brief Watchdog Structure for STW shutdown and startup.
@@ -437,19 +398,3 @@ void mainControlCycle( void )
         /*--- Process CAN Tx errors here ---*/
     }
 }
-
-/******************************************************************************/
-/*! \mainpage Introduction
-
-
-
-
-
-*/
-/******************************************************************************/
-
-/******************************************************************************/
-/*
-   Copyright (C) 2016  MacDon Industries Ltd.  All Rights Reserved.
-*/
-/******************************************************************************/

@@ -3,39 +3,25 @@
     \file
         can_j1939_user.c
 
-    \defgroup
-        can CAN
-
     \brief
         Application-specific file to define each Rx and Tx CAN message.
 
-    \ingroup
-        can
-
     \copyright
-        Copyright (C) 2023  MacDon Inustries Ltd.  All Rights Reserved.
-        License   use only under terms of contract / confidential\n
+        Copyright (C) 2025  University of Manitoba Association of Tiny Tractors.  All Rights Reserved.
+        License     use only under terms of contract / confidential\n
 
     History:
 
-    Date (YYYY/MM/DD) |   Author      |   Changes
-    ------------------|---------------|----------------
-    2023/03/31        | Ivan Ciric    | File Created
+    Date (YYYY/MM/DD) |   Author        |   Changes
+    ------------------|-----------------|----------------
+    2025/01/29        |Zachary DeGraeve | File created
 */
 /******************************************************************************/
 
 /*******************************************************************************
   INCLUDE
 *******************************************************************************/
-// include platform configuration
-#include "platform_config.h"
-
-#include "can_j1939.h"
 #include "can_j1939_user.h"
-#include "j1939_pgn_CCVS.h"
-#include "general.h"
-#include "j1939_user_parameters.h"
-#include "main.h"
 
 /*******************************************************************************
   DEFINES
@@ -163,19 +149,19 @@ static_assert(
 
 /******************************************************************************/
 /*!
-   \fn       int16_t initialize_CAN_user( void )
+   \fn       sint16 initialize_CAN_user( void )
    \brief    Application-specific CAN initialization implementation.
    \param    None.
    \ingroup  initCAN
    \return   error code from stwerrors.h
-   \retval   int16_t
+   \retval   sint16
 
     @{
 */
 /******************************************************************************/
-int16_t initialize_CAN_user( void )
+sint16 initialize_CAN_user( void )
 {
-    int16_t s16_error = C_NO_ERR;
+    sint16 s16_error = C_NO_ERR;
 
     //--- Add application specific initialization here ---
     //--- Return C_NO_ERR if no errors, or error code from stwerrors.h ---
@@ -201,7 +187,7 @@ int16_t initialize_CAN_user( void )
 static void f001_tx_msg_update_handler( J1939_stack_t j1939_stack, J1939_tx_message_t * message )
 {
     boolean success;
-    uint32_t spn_u32_sample_tx_param = get_spn_u32_sample_tx_parameter( );
+    uint32 spn_u32_sample_tx_param = get_spn_u32_sample_tx_parameter( );
 
     switch( j1939_stack )
     {
@@ -252,7 +238,6 @@ static void f002_rx_msg_handler( J1939_stack_t j1939_stack, J1939_rx_message_t *
                         if( success )
                         {
                             // Store the received parameter
-                            set_spn_u32_sample_rx_parameter( (uint32_t)u64_data );
                         }
                         else
                         {
@@ -271,7 +256,6 @@ static void f002_rx_msg_handler( J1939_stack_t j1939_stack, J1939_rx_message_t *
                     if( success )
                     {
                         // Store the received parameter
-                        set_spn_u32_sample_rx_parameter( (uint32_t)u64_data );
                     }
                     else
                     {
