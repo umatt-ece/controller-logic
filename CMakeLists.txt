@@ -10,6 +10,7 @@ project(controller-logic VERSION 1.0
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     # Let's nicely support folders in IDEs
     set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+    enable_testing()
 endif()
 
 include(FetchContent)
@@ -22,4 +23,3 @@ if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR MODERN_CMAKE_BUILD_TESTING)
    AND BUILD_TESTING)
   add_subdirectory(tests)
 endif()
-
