@@ -17,6 +17,8 @@
 #ifndef FSM_H
 #define FSM_H
 
+#include <stdint.h>
+
 /******************************************************************************/
 /*!
    \brief    StateHandler is a function pointer type
@@ -25,8 +27,30 @@
              handler function.
 */
 /******************************************************************************/
-typedef void (*StateHandler)(void);
+typedef void (*StateHandler)(void *); // I should be put down for the use of void*. :)
 
+/******************************************************************************/
 
+typedef struct
+{
+   uint32_t currentState;
+   uint32_t event;
+   uint32_t nextState;
+   StateHandler stateHandler;
+} StateTransition;
+
+typedef struct
+{
+   uint32_t currentState;
+   StateTransition *stateTransitions;
+   uint32_t numTransitions;
+} StateMachine;
+
+void initalize_fsm(StateMachine *statemachine,
+                   uint32_t initialState,
+                   StateTransition *stateTransitions,
+                   uint32_t numTransitions);
+
+void process_event(StateMachine *statemachine, uint32_t event, void *data);
 
 #endif // FSM_H
