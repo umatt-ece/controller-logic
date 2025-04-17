@@ -1,7 +1,7 @@
 /*******************************************************************************/
 /*!
     \file easing_out_cubic.c
-    \brief Provides an implementation of the ease_out_sine easing function. For
+    \brief Provides an implementation of the ease_out_cubic easing function. For
    more information on https://easings.net/#easeOutCubic.
 
     Project     Controller Logic\n
