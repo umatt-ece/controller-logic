@@ -14,9 +14,10 @@
  */
 /*******************************************************************************/
 
+#include "easing_out_sin.h"
+
 #include <math.h>
 
-#include "easing_out_sin.h"
 #include "easing_strategy.h"
 
 #define M_PI 3.14159265358979323846

@@ -1,6 +1,7 @@
-#include <cmath>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+
+#include <cmath>
 
 extern "C" {
 #include "easing_out_cubic.h"
@@ -9,8 +10,8 @@ extern "C" {
 }
 
 class EasingStrategyTest : public ::testing::Test {
-protected:
-  const double EPSILON = 1e-6; // Tolerance for floating point comparisons
+ protected:
+  const double EPSILON = 1e-6;  // Tolerance for floating point comparisons
 };
 
 TEST_F(EasingStrategyTest, NormalizeTimeReturnsCorrectValues) {
