@@ -17,7 +17,11 @@
 #define JOYSTICK_H
 
 typedef struct JOYSTICK {
-  int dummy;  // Placeholder for joystick data
+  float current_x;   // Current X axis value
+  float current_y;   // Current Y axis value
+  float previous_x;  // Previous X axis value
+  float previous_y;  // Previous Y axis value
+
 } joystick_t;
 
 #endif  // JOYSTICK_H
