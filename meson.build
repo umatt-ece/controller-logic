@@ -6,12 +6,14 @@ project(
 )
 
 project_sources = files(
+  'src/controller_logic.c',
+  'src/controller_logic_context.c',
   'src/easing/easing_out_cubic.c',
   'src/easing/easing_out_sin.c',
   'src/easing/easing_strategy.c',
 )
 
-include = include_directories('src/easing')
+include = include_directories('src/', 'src/easing')
 
 liball = static_library(meson.project_name(), project_sources, include_directories: include)
 

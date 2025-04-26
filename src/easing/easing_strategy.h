@@ -46,4 +46,4 @@ typedef double (*EasingStrategy)(int time, int duration);
 /*******************************************************************************/
 double normalize_time(int time, int duration);
 
-#endif // EASING_STRATEGY_H
+#endif  // EASING_STRATEGY_H
