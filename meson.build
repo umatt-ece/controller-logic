@@ -13,7 +13,7 @@ project_sources = files(
   'src/easing/easing_strategy.c',
 )
 
-include = include_directories('src/', 'src/easing', 'src/joystick')
+include = include_directories('src/', 'src/easing')
 
 liball = static_library(meson.project_name(), project_sources, include_directories: include)
 
