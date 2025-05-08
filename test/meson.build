@@ -6,6 +6,7 @@ gmock_dep = gtest_proj.get_variable('gmock_dep')
 test_project_sources = [
     'test_easing_strategy.cpp',
     'test_controller_logic_init.cpp',
+    'test_controller_logic.cpp',
 ]
 
 test_exe = executable(

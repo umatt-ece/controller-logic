@@ -9,7 +9,9 @@ class ControllerLogicInitTest : public ::testing::Test {
  protected:
   void SetUp() override {
     controller_logic_context_init(&context);
-    settings.dummy_value = 42;
+    settings.dead_zone = 10;
+    settings.sensitivity = 5;
+    settings.button_mapping = nullptr;
   }
 
   controller_logic_settings_t settings;

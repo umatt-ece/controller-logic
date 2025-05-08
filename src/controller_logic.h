@@ -18,8 +18,20 @@
 
 #include "controller_logic_context.h"
 
+/******************************************************************************/
+/*!
+  \brief This function maps a raw button index to a mapped button index.
+  \param raw_index The raw button index to be mapped.
+  \return A mapped button index based on the raw index provided
+*/
+/*******************************************************************************/
+typedef uint16_t (*button_mapping_function_t)(uint16_t raw_index);
+
 typedef struct CONTROLLER_LOGIC_SETTINGS {
-  int dummy_value;  // Placeholder for actual settings
+  uint16_t dead_zone;                        // Dead zone for joystick input
+  uint16_t sensitivity;                      // Sensitivity for joystick input
+  button_mapping_function_t button_mapping;  // Function to map raw button index
+                                             // to mapped button index
 } controller_logic_settings_t;
 
 typedef enum CONTROLLER_LOGIC_ERROR {
@@ -38,7 +50,7 @@ typedef enum CONTROLLER_LOGIC_ERROR {
     \param context A pointer to a controller_logic_context structure that will
     be used to store the context of the controller logic module. This structure
     should be allocated before calling this function.
-    
+
     \return A controller_logic_error value indicating the success or failure of
    the initialization. If the function returns CONTROLLER_LOGIC_ERROR, it means
     that the initialization was not successful.

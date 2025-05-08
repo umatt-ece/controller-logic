@@ -18,8 +18,12 @@
 
 #include <stdbool.h>
 
+#include "joystick.h"
+
 typedef struct CONTROLLER_LOGIC_CONTEXT_T {
   bool seat_pressed;
+  joystick_t left_joystick;
+  joystick_t right_joystick;
 } controller_logic_context_t;
 
 /*******************************************************************************/
