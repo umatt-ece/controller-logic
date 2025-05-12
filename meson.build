@@ -11,6 +11,7 @@ project_sources = files(
   'src/easing/easing_out_cubic.c',
   'src/easing/easing_out_sin.c',
   'src/easing/easing_strategy.c',
+  'src/joystick/joystick.c',
 )
 
 include = include_directories('src/', 'src/easing', 'src/joystick')

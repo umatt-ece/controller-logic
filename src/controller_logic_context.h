@@ -37,4 +37,7 @@ typedef struct CONTROLLER_LOGIC_CONTEXT_T {
 /*******************************************************************************/
 void controller_logic_context_init(controller_logic_context_t *context);
 
+bool controller_logic_deadman_switch_pressed(
+    const controller_logic_context_t *context);
+
 #endif  // CONTROLLER_LOGIC_CONTEXT_H

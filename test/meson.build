@@ -3,11 +3,7 @@ gtest_proj = subproject('gtest')
 gtest_dep = gtest_proj.get_variable('gtest_main_dep')
 gmock_dep = gtest_proj.get_variable('gmock_dep')
 
-test_project_sources = [
-    'test_easing_strategy.cpp',
-    'test_controller_logic_init.cpp',
-    'test_controller_logic.cpp',
-]
+test_project_sources = ['test_easing_strategy.cpp', 'intergration_test.cpp', 'test_joystick.cpp']
 
 test_exe = executable(
     meson.project_name() + '_test',

@@ -18,6 +18,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <sys/types.h>
 
 #define MAX_JOYSTICK_POSITION 256
 #define MIN_JOYSTICK_POSITION 0
@@ -34,5 +35,7 @@ typedef struct JOYSTICK {
 } joystick_t;
 
 typedef void (*joystick_button_handler_t)(uint16_t button_idx, bool pressed);
+
+bool joystick_in_dead_zone(joystick_t *joystick, uint16_t dead_zone);
 
 #endif  // JOYSTICK_H

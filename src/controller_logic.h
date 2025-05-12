@@ -17,6 +17,7 @@
 #define CONTROLLER_LOGIC_H
 
 #include "controller_logic_context.h"
+#include "joystick.h"
 
 /******************************************************************************/
 /*!
@@ -27,11 +28,21 @@
 /*******************************************************************************/
 typedef uint16_t (*button_mapping_function_t)(uint16_t raw_index);
 
+/******************************************************************************/
+/*!
+  \brief This function reads the joystick position and updates the
+  joystick_position_t
+  \param joystick A pointer to a joystick_t structure that contains the
+  joystick information
+*/
+/*******************************************************************************/
+typedef void read_joystick(joystick_t *joystick);
+
 typedef struct CONTROLLER_LOGIC_SETTINGS {
-  uint16_t dead_zone;                        // Dead zone for joystick input
-  uint16_t sensitivity;                      // Sensitivity for joystick input
-  button_mapping_function_t button_mapping;  // Function to map raw button index
-                                             // to mapped button index
+  uint16_t dead_zone;    // Dead zone for joystick input
+  uint16_t sensitivity;  // Sensitivity for joystick input
+  read_joystick *read_right_joystick;
+  read_joystick *read_left_joystick;
 } controller_logic_settings_t;
 
 typedef enum CONTROLLER_LOGIC_ERROR {
