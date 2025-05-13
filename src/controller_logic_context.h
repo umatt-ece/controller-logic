@@ -29,6 +29,8 @@ typedef struct CONTROLLER_LOGIC_CONTEXT_T {
   motor_t right_motor;
 } controller_logic_context_t;
 
+typedef void (*read_seat_pressed)(bool *seat_pressed);
+
 /*******************************************************************************/
 /*!
     \brief Initialize the controller logic context.

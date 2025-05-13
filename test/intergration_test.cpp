@@ -62,11 +62,14 @@ void set_right_motor_speed(motor_t *motor) { print_motor_status(motor); }
 
 void set_left_motor_speed(motor_t *motor) { print_motor_status(motor); }
 
+void seat_switch_pressed(bool *seat_pressed) { *seat_pressed = true; }
+
 TEST(ControllerLogicTest, Initialization) {
   controller_logic_settings_t settings = {
       .dead_zone = 7,    // Area were we don't care about the joystick position
       .sensitivity = 5,  // How sensitive the joystick is
       .speed = MOTOR_SPEED_MEDIUM,  // Speed of the motor
+      .seat_pressed = seat_switch_pressed,
       .read_right_joystick = read_joystick_right,
       .read_left_joystick = read_joystick_left,
       .right_motor_set_speed = set_right_motor_speed,
@@ -87,7 +90,5 @@ TEST(ControllerLogicTest, Initialization) {
   EXPECT_EQ(result, CONTROLLER_LOGIC_OK);
 
   controller_logic_run();  // Run the controller logic I'm assuming that this is
-                           // a 'loop' function
-
-                           controller_logic_run();
+  // a 'loop' function
 }

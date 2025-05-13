@@ -24,6 +24,7 @@ typedef struct CONTROLLER_LOGIC_SETTINGS {
   uint16_t dead_zone;    // Dead zone for joystick input
   uint16_t sensitivity;  // Sensitivity for joystick input
   motor_speed_t speed;   // Speed of the motor
+  read_seat_pressed seat_pressed; 
   read_joystick *read_right_joystick;
   read_joystick *read_left_joystick;
   motor_set_speed_function_t right_motor_set_speed;

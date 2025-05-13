@@ -53,9 +53,11 @@ controller_logic_error_t controller_logic_init(
 }
 
 void controller_logic_run(void) {
-  if (controller_settings == NULL) {
+  if (controller_settings == NULL || controller_context == NULL) {
     return;
   }
+
+  controller_settings->seat_pressed(&controller_context->seat_pressed);
 
   controller_settings->read_right_joystick(&controller_context->right_joystick);
   controller_settings->read_left_joystick(&controller_context->left_joystick);
