@@ -19,11 +19,14 @@
 #include <stdbool.h>
 
 #include "joystick.h"
+#include "motor.h"
 
 typedef struct CONTROLLER_LOGIC_CONTEXT_T {
   bool seat_pressed;
   joystick_t left_joystick;
   joystick_t right_joystick;
+  motor_t left_motor;
+  motor_t right_motor;
 } controller_logic_context_t;
 
 /*******************************************************************************/

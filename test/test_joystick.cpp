@@ -14,8 +14,6 @@ class JoystickDeadZoneTest : public ::testing::Test {
     // Initialize joystick to a known state
     joystick.previous_position = JOYSTICK_CENTER_POSITION;
     joystick.deadman_switch = false;
-    joystick.current_buttons = 0;
-    joystick.previous_buttons = 0;
   }
 };
 

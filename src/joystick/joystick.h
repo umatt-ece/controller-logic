@@ -30,12 +30,25 @@ typedef struct JOYSTICK {
   uint8_t current_position;
   uint8_t previous_position;
   bool deadman_switch;
-  uint16_t current_buttons;
-  uint16_t previous_buttons;
 } joystick_t;
 
-typedef void (*joystick_button_handler_t)(uint16_t button_idx, bool pressed);
-
+/******************************************************************************/
+/*!
+  \brief This function checks if the joystick is in the dead zone
+  \param joystick A pointer to a joystick_t type that contains the joystick
+  \param dead_zone The dead zone value to check against
+*/
+/*******************************************************************************/
 bool joystick_in_dead_zone(joystick_t *joystick, uint16_t dead_zone);
+
+/******************************************************************************/
+/*!
+  \brief This function reads the joystick position and updates the
+  joystick_position_t
+  \param joystick A pointer to a joystick_t structure that contains the
+  joystick information
+*/
+/*******************************************************************************/
+typedef void read_joystick(joystick_t *joystick);
 
 #endif  // JOYSTICK_H

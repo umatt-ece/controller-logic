@@ -18,31 +18,16 @@
 
 #include "controller_logic_context.h"
 #include "joystick.h"
-
-/******************************************************************************/
-/*!
-  \brief This function maps a raw button index to a mapped button index.
-  \param raw_index The raw button index to be mapped.
-  \return A mapped button index based on the raw index provided
-*/
-/*******************************************************************************/
-typedef uint16_t (*button_mapping_function_t)(uint16_t raw_index);
-
-/******************************************************************************/
-/*!
-  \brief This function reads the joystick position and updates the
-  joystick_position_t
-  \param joystick A pointer to a joystick_t structure that contains the
-  joystick information
-*/
-/*******************************************************************************/
-typedef void read_joystick(joystick_t *joystick);
+#include "motor.h"
 
 typedef struct CONTROLLER_LOGIC_SETTINGS {
   uint16_t dead_zone;    // Dead zone for joystick input
   uint16_t sensitivity;  // Sensitivity for joystick input
+  motor_speed_t speed;   // Speed of the motor
   read_joystick *read_right_joystick;
   read_joystick *read_left_joystick;
+  motor_set_speed_function_t right_motor_set_speed;
+  motor_set_speed_function_t left_motor_set_speed;
 } controller_logic_settings_t;
 
 typedef enum CONTROLLER_LOGIC_ERROR {

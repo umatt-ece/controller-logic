@@ -14,7 +14,7 @@ project_sources = files(
   'src/joystick/joystick.c',
 )
 
-include = include_directories('src/', 'src/easing', 'src/joystick')
+include = include_directories('src/', 'src/easing', 'src/joystick', 'src/motor')
 
 liball = static_library(meson.project_name(), project_sources, include_directories: include)
 
