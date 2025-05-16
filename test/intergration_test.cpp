@@ -1,6 +1,8 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+#include <cstdio>
+
 #include "joystick.h"
 #include "motor.h"
 
@@ -90,5 +92,9 @@ TEST(ControllerLogicTest, Initialization) {
   EXPECT_EQ(result, CONTROLLER_LOGIC_OK);
 
   controller_logic_run();  // Run the controller logic I'm assuming that this is
-  // a 'loop' function
+                           // a 'loop' function
+
+  context.seat_pressed = false;
+
+  EXPECT_EQ(context.left_motor.speed, MOTOR_SPEED_STOP);
 }
