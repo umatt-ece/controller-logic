@@ -94,13 +94,9 @@ void handle_joystick_input(joystick_t *joystick, motor_t *motor,
   int delta = joystick->current_position - joystick->previous_position;
 
   if (abs(delta) > controller_settings->sensitivity) {
-    printf("Joystick moved: %d\n", delta);
-
     if (!joystick_in_dead_zone(&controller_context->right_joystick,
                                controller_settings->dead_zone)) {
-      printf("Joystick is not in dead zone\n");
       if (joystick->current_position > joystick->previous_position) {
-        printf("Joystick moved forward\n");
         motor->direction = MOTOR_DIRECTION_FORWARD;
         controller_context->right_motor.speed =
             controller_settings
@@ -108,7 +104,6 @@ void handle_joystick_input(joystick_t *joystick, motor_t *motor,
 
         motor_set_speed(motor);
       } else {
-        printf("Joystick moved backward\n");
         motor->direction = MOTOR_DIRECTION_BACKWARD;
         controller_context->right_motor.speed =
             controller_settings
@@ -117,7 +112,6 @@ void handle_joystick_input(joystick_t *joystick, motor_t *motor,
         motor_set_speed(motor);
       }
     } else {
-      printf("Joystick is in dead zone\n");
       controller_context->right_motor.speed = MOTOR_SPEED_STOP;
       motor_set_speed(motor);
     }
