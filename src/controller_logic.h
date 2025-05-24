@@ -17,9 +17,18 @@
 #define CONTROLLER_LOGIC_H
 
 #include "controller_logic_context.h"
+#include "joystick.h"
+#include "motor.h"
 
 typedef struct CONTROLLER_LOGIC_SETTINGS {
-  int dummy_value;  // Placeholder for actual settings
+  uint16_t dead_zone;    // Dead zone for joystick input
+  uint16_t sensitivity;  // Sensitivity for joystick input
+  motor_speed_t speed;   // Speed of the motor
+  read_seat_pressed seat_pressed; 
+  read_joystick *read_right_joystick;
+  read_joystick *read_left_joystick;
+  motor_set_speed_function_t right_motor_set_speed;
+  motor_set_speed_function_t left_motor_set_speed;
 } controller_logic_settings_t;
 
 typedef enum CONTROLLER_LOGIC_ERROR {
@@ -38,7 +47,7 @@ typedef enum CONTROLLER_LOGIC_ERROR {
     \param context A pointer to a controller_logic_context structure that will
     be used to store the context of the controller logic module. This structure
     should be allocated before calling this function.
-    
+
     \return A controller_logic_error value indicating the success or failure of
    the initialization. If the function returns CONTROLLER_LOGIC_ERROR, it means
     that the initialization was not successful.
